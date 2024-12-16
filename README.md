@@ -107,6 +107,7 @@ The dataset consists of 15 features, including demographics, protein levels, tum
 - Develop machine learning models to predict patient outcomes.
 - Optimize model performance through hyperparameter tuning.
 - Expand feature engineering with domain-specific insights.
+- Need to deploy this project in AWS cloud
 
 ---
 
