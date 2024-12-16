@@ -1,76 +1,121 @@
 # Breast Cancer Prediction Model
 
 ## Overview
-This dataset contains information collected through clinical records and follow-up data from breast cancer patients who underwent tumor removal surgery. It serves as a valuable resource for understanding patient demographics, clinical characteristics, treatment details, and outcomes.
+
+This dataset was compiled from a collaborative study conducted at a leading oncology center to analyze factors affecting breast cancer outcomes. It includes anonymized data of over 300 patients who underwent various surgical procedures to remove their tumors. The study aimed to identify whether the patient survived (Alive) or not (Dead) after surgery.
+
+This repository focuses on a data science project for breast cancer prediction and analysis using statistical tests and machine learning techniques. The project processes and analyzes the dataset to extract meaningful insights and builds predictive models for better healthcare decision-making.
 
 ---
 
-## Story
-The dataset was compiled from a collaborative study conducted at a leading oncology center to analyze factors affecting breast cancer outcomes. It includes anonymized data of over 400 patients who underwent various surgical procedures to remove their tumors. The study aimed to identify patterns in patient characteristics, surgical outcomes, and follow-up data to support personalized treatment strategies.
+## Project Objectives
+
+The primary goal of this project is to:
+1. Perform a detailed exploratory data analysis (EDA) on the breast cancer dataset.
+2. Apply statistical tests to identify significant features influencing patient survival.
+3. Develop a machine learning model for predicting patient outcomes.
 
 ---
 
 ## Column Descriptions
 
-### Patient Information
-- **Patient_ID**: A unique identifier assigned to each patient to ensure anonymity while enabling researchers to trace specific records for deeper analysis.
-- **Age**: Represents the age of patients, ranging from young adults to seniors.
-- **Gender**: Indicates the gender of the patients. While breast cancer is predominantly found in females, the dataset includes male patients to highlight cross-gender occurrence.
+The dataset consists of 15 features, including demographics, protein levels, tumor information, and treatment details. The target variable is `Patient_Status`.
 
-### Biomarkers
-- **Protein1, Protein2, Protein3, Protein4**: Expression levels of key proteins associated with tumor biology. These biomarkers may predict treatment outcomes or disease progression.
+### Features:
+- **Age**: Age of the patient.
+- **Gender**: Male/Female indicator.
+- **Protein1**: Protein marker 1 levels.
+- **Protein2**: Protein marker 2 levels.
+- **Protein3**: Protein marker 3 levels.
+- **Protein4**: Protein marker 4 levels.
+- **Tumour_Stage**: Stage of the tumor.
+- **Histology**: Type of tumor histology.
+- **ER status**: Estrogen receptor status.
+- **PR status**: Progesterone receptor status.
+- **HER2 status**: HER2 protein status.
+- **Surgery_type**: Type of surgery performed.
+- **Date_of_Surgery**: Date of the surgery.
+- **Date_of_Last_Visit**: Date of the patient's last follow-up visit.
+- **Patient_Status**: Target variable indicating whether the patient is `Alive` or `Dead`.
 
-### Tumor and Surgery Details
-- **Tumour_Stage**: Categorized into Stages I, II, and III to indicate disease severity at diagnosis.
-- **Histology**: Detailed histological classifications, including:
-  - Infiltrating Ductal Carcinoma
-  - Infiltrating Lobular Carcinoma
-  - Mucinous Carcinoma
-- **ER status, PR status, HER2 status**: Hormone receptor and HER2 statuses essential for deciding targeted therapy options.
-- **Surgery_type**: The type of surgery performed, such as Lumpectomy or Modified Radical Mastectomy.
+---
 
-### Timeline and Follow-Up
-- **Date_of_Surgery**: Records the surgery date, aiding in tracking treatment timelines.
-- **Date_of_Last_Visit**: Captures the most recent follow-up visit. Null values may indicate lack of or loss to follow-up.
-- **Patient_Status**: Survival status (Alive/Dead) at the time of the last follow-up. Null values signify unknown outcomes due to lack of follow-up.
+## Key Features
+
+### Data Analysis
+- Hypothesis testing (2-sample t-tests) was conducted to assess feature independence and select significant variables.
+- Feature correlation analysis identified redundant or non-contributing features.
+
+### Feature Selection
+- Retained key features based on statistical significance:
+  - `Age`, `Tumour_Stage`, `Surgery_type`, `Protein1`, `Protein2`
+- Dropped non-significant features such as:
+  - `ER status`, `PR status`, `HER2 status`
+
+### Statistical Testing
+- Conducted t-tests between numerical features and `Patient_Status` to evaluate feature dependency.
+
+### Machine Learning Preparation
+- Cleaned and preprocessed the dataset for model training.
+- Removed irrelevant or redundant features for better performance.
+
+---
+
+## Steps Involved
+
+### Data Preprocessing
+- Cleaning and handling missing values.
+- Statistical analysis for feature selection.
+
+### Exploratory Data Analysis (EDA)
+- Visualization of the dataset's key features and relationships.
+
+### Feature Engineering
+- Selection of relevant variables based on domain knowledge and statistical testing.
+
+### Machine Learning (Future Work)
+- Preparing data for training classification models (to be implemented).
 
 ---
 
 ## Observations and Use Cases
 
 ### Predictive Insights
-- **Survival Prediction**: Analyze features like tumor stage, protein levels, and histology to predict patient survival (`Patient_Status`).
-- **Cancer Severity**: Classification of cancer severity (`Tumour_Stage`) using clinical and demographic data.
+- **Survival Prediction**: Features such as tumor stage, protein levels, and histology are analyzed to predict patient survival (`Patient_Status`).
 
-### Personalized Medicine
-- Use hormone receptor and HER2 statuses to identify patients who may benefit from specific targeted therapies.
+### Variables
+#### Dependent Variable (Target for Prediction)
+- **Patient_Status**: Survival prediction (`Alive`/`Dead`).
 
-### Surgical Outcomes
-- Compare the effectiveness of different surgical techniques on long-term survival rates.
-
-### Follow-Up Analysis
-- Understand follow-up patterns to guide improvements in post-surgical care and monitoring protocols.
-
----
-
-## Variables
-
-### Dependent Variables (Targets for Prediction)
-- **Patient_Status**: Survival prediction (Alive/Dead).
-- **Tumour_Stage**: Classification of cancer severity.
-
-### Independent Variables (Predictors)
-- Age, Gender, Protein levels, Tumor histology, Hormone receptor status, Surgery type, Follow-up data.
+#### Independent Variables (Predictors)
+- `Age`, `Gender`, `Protein1`, `Protein2`, `Tumour_Stage`, `Histology`, `Surgery_type`, follow-up data.
 
 ---
 
 ## Key Challenges
-- **Missing Values**: Null values in `Patient_Status` and `Date_of_Last_Visit` may limit survival analysis.
-- **Categorical Data**: Columns like `Histology` and `Surgery_type` may require encoding for machine learning models.
+
+1. **Missing Values**:
+   - Null values in `Patient_Status` and `Date_of_Last_Visit` may limit survival analysis.
+   
+2. **Categorical Data**:
+   - Columns like `Histology` and `Surgery_type` may require encoding for machine learning models.
+
+---
+
+## Future Work
+
+- Develop machine learning models to predict patient outcomes.
+- Optimize model performance through hyperparameter tuning.
+- Expand feature engineering with domain-specific insights.
 
 ---
 
 ## Conclusion
-This dataset provides a comprehensive view of breast cancer treatment and outcomes, offering opportunities for descriptive analysis and predictive modeling. Researchers can explore clinical factors influencing survival, predict outcomes, and develop personalized treatment strategies using this dataset.
+
+This dataset provides a comprehensive view of breast cancer treatment and outcomes, offering opportunities for both descriptive analysis and predictive modeling. Researchers can explore clinical factors influencing survival, predict outcomes, and develop personalized treatment strategies using this dataset.
 
 ---
+## Kaggle Dataset Link
+
+https://www.kaggle.com/datasets/amandam1/breastcancerdataset/data
+
